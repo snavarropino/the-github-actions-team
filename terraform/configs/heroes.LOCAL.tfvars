@@ -1,0 +1,10 @@
+resource_group          = "GitHubActionsLocal"
+app_service_plan_name   = "HeroesSPLocal"
+heroesapi_appsvcname    = "HeroesApiLocal"
+heroesweb_appsvcname    = "HeroesWebLocal"
+heroesinsights          = "HeroesInsightsLocal"
+
+sql_server_login    = "administrador"
+sql_server_pwd    = "MyPwd123#"
+sql_server_name    = "heroessqllocal"
+database_name    = "heroeslocal"

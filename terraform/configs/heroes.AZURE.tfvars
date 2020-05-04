@@ -1,0 +1,10 @@
+resource_group          = "GitHubActionsRG"
+app_service_plan_name   = "GitHubActionsSP"
+heroesapi_appsvcname    = "HeroesApi"
+heroesweb_appsvcname    = "HeroesWeb"
+heroesinsights          = "HeroesInsights"
+
+sql_server_login    = "administrador"
+sql_server_pwd    = "MyPwd123#"
+sql_server_name    = "heroessql"
+database_name    = "heroes"

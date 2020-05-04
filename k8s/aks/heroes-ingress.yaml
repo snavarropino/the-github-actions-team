@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: heroes-ingress
+  annotations: 
+    nginx.ingress.kubernetes.io/affinity: cookie
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules: 
+  - host: heroes-aks.westeurope.cloudapp.azure.com
+    http:
+      paths:
+      - path: /api
+        backend:
+          serviceName: heroes-api-svc
+          servicePort: 80 
+  - host: heroes-aks.westeurope.cloudapp.azure.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: heroes-web-svc
+          servicePort: 4200 
