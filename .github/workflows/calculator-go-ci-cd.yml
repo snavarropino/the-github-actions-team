@@ -62,7 +62,6 @@ jobs:
         timeout-minutes: 5
         with:
           manifests: dapr-calculator/deploy/go-adder.yaml
-          images: ${{env.NAMESPACE}}/${{env.IMAGE_NAME}}:${{github.sha}}
       
       - name: "If the deployment was not succeeded"
         if: failure()

@@ -22,6 +22,7 @@ spec:
       containers:
       - name: add
         image: snavarropino/distributed-calculator-go:latest
+        imagePullPolicy: "Always"
         ports:
         - containerPort: 6000
         imagePullPolicy: Always
