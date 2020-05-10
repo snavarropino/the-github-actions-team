@@ -37,10 +37,11 @@ jobs:
     - name: Tag latest
       run: docker tag ${{ env.NAMESPACE }}/${{env.IMAGE_NAME}}:${{ github.sha }} ${{ env.NAMESPACE }}/${{env.IMAGE_NAME}}:latest
 
-    - name: Push
-      run: |
-        docker push ${{ env.NAMESPACE }}/${{env.IMAGE_NAME}}:${{ github.sha }}
-        docker push ${{ env.NAMESPACE }}/${{env.IMAGE_NAME}}:latest
+    - name: Push sha tag
+      run: docker push ${{ env.NAMESPACE }}/${{env.IMAGE_NAME}}:${{ github.sha }}
+
+    - name: Push latest tag
+      run: docker push ${{ env.NAMESPACE }}/${{env.IMAGE_NAME}}:latest
 
   deploy-to-aks:
     needs: [build-and-push-docker-image]
