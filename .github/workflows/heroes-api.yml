@@ -24,10 +24,10 @@ jobs:
     - name: Test
       run: dotnet test heroes/src/back/Api.Test/Api.Test.csproj --no-restore --verbosity normal
     - name: Publish
-      run:  dotnet publish heroes/src/back/api/Api.csproj --configuration Release -o dotnetcoreapiapp 
+      run:  dotnet publish heroes/src/back/Api/Api.csproj --configuration Release -o dotnetcoreapiapp 
     - uses: microsoft/variable-substitution@v1 
       with:
-        files: 'heroes/src/back/api/appsettings.json'
+        files: "heroes/src/back/Api/*.json"
       env:
         ConnectionStrings.heroesConnection: "Server=tcp:heroes-db-server.database.windows.net,1433;Initial Catalog=heroes-db;Persist Security Info=False;User ID=administrador;Password=MiTemporal#1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
         Cors.0: "heroes-web.azurewebsites.net"
