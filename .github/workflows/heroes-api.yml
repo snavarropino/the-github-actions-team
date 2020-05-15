@@ -3,8 +3,15 @@ name: heroes-api
 on:
   push:
     branches: [ master ]
+    paths:
+      - "heroes/src/back/**"
+      - ".github/workflows/heroes-api.yml"    
   pull_request:
     branches: [ master ]
+    paths:
+      - "heroes/src/back/**"
+      - ".github/workflows/heroes-api.yml"
+
 
 jobs:
   build:
