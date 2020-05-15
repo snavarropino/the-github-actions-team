@@ -6,6 +6,7 @@ on:
     paths:
       - "dapr-calculator/node/**"
       - "dapr-calculator/deploy/node-divider.yaml"
+      - ".github/workflows/calculator-node-ci-cd.yml"
       - "dapr-calculator/trigger-workflows.md"
   pull_request:
     branches: [ master ]
