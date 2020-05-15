@@ -7,6 +7,7 @@ on:
       - "dapr-calculator/react-calculator/**"
       - "dapr-calculator/deploy/react-calculator.yaml"
       - "dapr-calculator/trigger-workflows.md"
+      - ".github/workflows/react-calculator-ci-cd.yml"
   pull_request:
     branches: [ master ]
     paths:
@@ -61,7 +62,9 @@ jobs:
         uses: azure/k8s-deploy@v1
         timeout-minutes: 5
         with:
-          manifests: dapr-calculator/deploy/react-calculator.yaml
+          manifests: |
+            dapr-calculator/deploy/react-calculator.yaml
+            dapr-calculator/deploy/redis.yaml
       
       - name: "If the deployment was not succeeded"
         if: failure()
