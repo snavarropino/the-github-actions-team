@@ -22,4 +22,4 @@ jobs:
     - name: Build
       run: dotnet build heroes/src/back/Api/Api.csproj --configuration Release --no-restore
     - name: Test
-      run: dotnet test heroes/src/back/Api/Api.Test.csproj --no-restore --verbosity normal
+      run: dotnet test heroes/src/back/Api.Test/Api.Test.csproj --no-restore --verbosity normal
