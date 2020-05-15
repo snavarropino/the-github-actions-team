@@ -1,0 +1,25 @@
+name: heroes-api
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+    - name: Install dependencies
+      run: dotnet restore heroes/src/back/Api/Api.csproj
+    - name: Build
+      run: dotnet build heroes/src/back/Api/Api.csproj --configuration Release --no-restore
+    - name: Test
+      run: dotnet test heroes/src/back/Api/Api.Test.csproj --no-restore --verbosity normal
