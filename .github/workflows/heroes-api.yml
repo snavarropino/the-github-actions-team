@@ -59,6 +59,6 @@ jobs:
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v1
       with: 
-        app-name: heroes-api-actions 
+        app-name: heroes-actions-api
         publish-profile: ${{ secrets.ApiPublishProfile }} 
         package: './dotnetcoreapiapp' 
