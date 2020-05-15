@@ -1,0 +1,67 @@
+name: heroes-api
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - "heroes/src/front/**"
+      - ".github/workflows/heroes-web.yml"
+
+  pull_request:
+    branches: [ master ]
+    paths:
+      - "heroes/src/front/**"
+      - ".github/workflows/heroes-web.yml"
+
+env:
+  NODE_VERSION: '10.x'                # set this to the node version to use
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    - name: npm install, build, and test
+      run: |
+        # Build and test the project, then
+        # deploy to Azure Web App.
+        npm install
+        npm run build:prod
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: web-artifact
+        path: dist
+
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: web-artifact
+        path: dist
+
+    - name: Variable substitution
+      uses: microsoft/variable-substitution@v1 
+      with:
+        files: "**/config.json"
+      env:
+        apiUrl: "https://heroes-actions-api.azurewebsites.net/api"
+    
+    - name: 'Run Azure webapp deploy action using publish profile credentials'
+      uses: azure/webapps-deploy@v1
+      with: 
+        app-name: heroes-actions-web
+        publish-profile: ${{ secrets.WebPublishProfile }} 
+        package: './dist' 
