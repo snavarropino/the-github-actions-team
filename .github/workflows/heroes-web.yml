@@ -36,12 +36,14 @@ jobs:
         # deploy to Azure Web App.
         npm install
         npm run build:prod
+      working-directory: ${{ env.working-directory }}
 
     - name: Upload artifact
       uses: actions/upload-artifact@v1
       with:
         name: web-artifact
         path: dist
+      working-directory: ${{ env.working-directory }}
 
   deploy:
     needs: [build]
