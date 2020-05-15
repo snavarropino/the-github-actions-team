@@ -42,8 +42,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: web-artifact
-        path: dist
-      working-directory: ${{ env.working-directory }}
+        path: ./heroes/src/front/dist
 
   deploy:
     needs: [build]
