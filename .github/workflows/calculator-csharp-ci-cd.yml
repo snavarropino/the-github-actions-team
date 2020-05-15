@@ -1,0 +1,68 @@
+name: calculator-csharp-ci-cd
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - "dapr-calculator/csharp/**"
+      - "dapr-calculator/deploy/dotnet-subtractor.yaml"
+      - "dapr-calculator/trigger-workflows.md"
+  pull_request:
+    branches: [ master ]
+    paths:
+      - "dapr-calculator/csharp/**"
+env:
+  CLUSTER_NAME: aksserg
+  CLUSTER_RESOURCE_GROUP: akssergrg
+  NAMESPACE: snavarropino
+  IMAGE_NAME: distributed-calculator-csharp
+
+jobs:
+  build-and-push-docker-image:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    - uses: azure/docker-login@v1
+      with:
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+    
+    - name: Build
+      run: docker build -t ${{ env.NAMESPACE }}/${{env.IMAGE_NAME}}:${{ github.sha }} ./dapr-calculator/csharp/
+
+    - name: Tag latest
+      run: docker tag ${{ env.NAMESPACE }}/${{env.IMAGE_NAME}}:${{ github.sha }} ${{ env.NAMESPACE }}/${{env.IMAGE_NAME}}:latest
+
+    - name: Push sha tag
+      run: docker push ${{ env.NAMESPACE }}/${{env.IMAGE_NAME}}:${{ github.sha }}
+
+    - name: Push latest tag
+      run: docker push ${{ env.NAMESPACE }}/${{env.IMAGE_NAME}}:latest
+
+  deploy-to-aks:
+    needs: [build-and-push-docker-image]
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Get code from the repo"
+        uses: actions/checkout@master
+      
+      - name: "Set k8s the context"
+        uses: azure/aks-set-context@v1
+        with:
+          creds: "${{secrets.AZURE_CREDENTIALS}}"
+          cluster-name: ${{env.CLUSTER_NAME}}
+          resource-group: ${{env.CLUSTER_RESOURCE_GROUP}}
+      
+      - name: "Deploy app"
+        id: deployment
+        uses: azure/k8s-deploy@v1
+        timeout-minutes: 5
+        with:
+          manifests: dapr-calculator/deploy/dotnet-subtractor.yaml
+      
+      - name: "If the deployment was not succeeded"
+        if: failure()
+        run: kubectl rollout undo deployment/subtractapp
