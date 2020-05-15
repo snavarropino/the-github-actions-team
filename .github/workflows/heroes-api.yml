@@ -48,7 +48,8 @@ jobs:
         name: api-artifact
         path: dotnetcoreapiapp
 
-    - uses: microsoft/variable-substitution@v1 
+    - name: Variable substitution
+      uses: microsoft/variable-substitution@v1 
       with:
         files: "dotnetcoreapiapp/appsettings.json"
       env:
