@@ -50,7 +50,7 @@ jobs:
 
     - uses: microsoft/variable-substitution@v1 
       with:
-        files: "appsettings.json"
+        files: "dotnetcoreapiapp/appsettings.json"
       env:
         ConnectionStrings.heroesConnection: "Server=tcp:heroes-db-server.database.windows.net,1433;Initial Catalog=heroes-db;Persist Security Info=False;User ID=administrador;Password=MiTemporal#1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
         Cors.0: "heroes-web.azurewebsites.net"
