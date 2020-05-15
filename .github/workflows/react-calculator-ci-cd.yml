@@ -63,8 +63,8 @@ jobs:
         timeout-minutes: 5
         with:
           manifests: |
-            dapr-calculator/deploy/react-calculator.yaml
-            dapr-calculator/deploy/redis.yaml
+              dapr-calculator/deploy/react-calculator.yaml
+              dapr-calculator/deploy/redis.yaml
       
       - name: "If the deployment was not succeeded"
         if: failure()
