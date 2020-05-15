@@ -1,4 +1,4 @@
-name: heroes-api
+name: heroes-web
 
 on:
   push:
