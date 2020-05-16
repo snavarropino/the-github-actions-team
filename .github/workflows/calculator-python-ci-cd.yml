@@ -6,6 +6,7 @@ on:
     paths:
       - "dapr-calculator/python/**"
       - "dapr-calculator/deploy/python-multiplier.yaml"
+      - ".github/workflows/calculator-python-ci-cd.yml"
       - "dapr-calculator/trigger-workflows.md"
   pull_request:
     branches: [ master ]

@@ -6,6 +6,7 @@ on:
     paths:
       - "dapr-calculator/go/**"
       - "dapr-calculator/deploy/go-adder.yaml"
+      - ".github/workflows/calculator-go-ci-cd.yml"
       - "dapr-calculator/trigger-workflows.md"
   pull_request:
     branches: [ master ]

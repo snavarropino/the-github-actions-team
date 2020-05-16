@@ -6,6 +6,7 @@ on:
     paths:
       - "dapr-calculator/csharp/**"
       - "dapr-calculator/deploy/dotnet-subtractor.yaml"
+      - ".github/workflows/calculator-csharp-ci-cd.yml"
       - "dapr-calculator/trigger-workflows.md"
   pull_request:
     branches: [ master ]
