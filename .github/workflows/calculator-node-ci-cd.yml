@@ -47,23 +47,9 @@ jobs:
     needs: [build-and-push-docker-image]
     runs-on: ubuntu-latest
     steps:
-      - name: "Get code from the repo"
-        uses: actions/checkout@master
-      
-      - name: "Set k8s the context"
-        uses: azure/aks-set-context@v1
+
+      - name: Rollout latest image
+        uses: nickgronow/kubectl@master
         with:
-          creds: "${{secrets.AZURE_CREDENTIALS}}"
-          cluster-name: ${{env.CLUSTER_NAME}}
-          resource-group: ${{env.CLUSTER_RESOURCE_GROUP}}
-      
-      - name: "Deploy app"
-        id: deployment
-        uses: azure/k8s-deploy@v1
-        timeout-minutes: 5
-        with:
-          manifests: dapr-calculator/deploy/node-divider.yaml
-      
-      - name: "If the deployment was not succeeded"
-        if: failure()
-        run: kubectl rollout undo deployment/divideapp
+          config_data: ${{ secrets.KubeConf }}
+          args: rollout restart deployment divideapp
