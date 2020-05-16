@@ -6,8 +6,9 @@ on:
     paths:
       - "dapr-calculator/react-calculator/**"
       - "dapr-calculator/deploy/react-calculator.yaml"
-      - "dapr-calculator/trigger-workflows.md"
       - ".github/workflows/react-calculator-ci-cd.yml"
+      - "dapr-calculator/trigger-workflows.md"
+      
   pull_request:
     branches: [ master ]
     paths:
