@@ -18,7 +18,7 @@ namespace Subtract.Controllers
         [HttpPost]
         public decimal Subtract(Operands operands)
         {
-            return Decimal.Parse(operands.OperandOne) - Decimal.Parse(operands.OperandTwo);
+            return Decimal.Parse(operands.OperandOne) - Decimal.Parse(operands.OperandTwo) - 1;
         }
     }
 }
