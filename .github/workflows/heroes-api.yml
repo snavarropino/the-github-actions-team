@@ -25,7 +25,7 @@ jobs:
         dotnet-version: 3.1.101
 
     - name: Install dependencies
-      run: dotnet restore heroes/src/back/Api/Api.csproj
+      run: dotnet restore heroes/src/back/SuperHeroesApi.sln
 
     - name: Build
       run: dotnet build heroes/src/back/SuperHeroesApi.sln --configuration Release --no-restore
