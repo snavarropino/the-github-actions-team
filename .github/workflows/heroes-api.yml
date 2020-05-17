@@ -28,7 +28,7 @@ jobs:
       run: dotnet restore heroes/src/back/SuperHeroesApi.sln
 
     - name: Build
-      run: dotnet build heroes/src/back/SuperHeroesApi.sln --configuration Release --no-restore
+      run: dotnet build heroes/src/back/Api/Api.csproj --configuration Release
 
     - name: Test
       run: dotnet test heroes/src/back/Api.Test/Api.Test.csproj 
