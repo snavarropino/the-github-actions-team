@@ -11,8 +11,6 @@ on:
     paths:
       - "heroes/src/back/**"
       - ".github/workflows/heroes-api.yml"
-
-
 jobs:
   build:
 
@@ -30,13 +28,13 @@ jobs:
       run: dotnet restore heroes/src/back/Api/Api.csproj
 
     - name: Build
-      run: dotnet build heroes/src/back/Api/Api.csproj --configuration Release --no-restore
+      run: dotnet build heroes/src/back/**/*.csproj --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test heroes/src/back/Api.Test/Api.Test.csproj --no-restore --verbosity normal
+      run: dotnet test heroes/src/back/Api.Test/Api.Test.csproj --no-build --verbosity normal
 
     - name: Publish
-      run:  dotnet publish heroes/src/back/Api/Api.csproj --configuration Release -o dotnetcoreapiapp 
+      run:  dotnet publish heroes/src/back/Api/Api.csproj --no-restore --configuration Release -o dotnetcoreapiapp 
 
     - name: Upload artifact
       uses: actions/upload-artifact@v1
@@ -60,7 +58,7 @@ jobs:
       with:
         files: "dotnetcoreapiapp/appsettings.json"
       env:
-        ConnectionStrings.heroesConnection: "Server=tcp:heroes-db-server.database.windows.net,1433;Initial Catalog=heroes-db;Persist Security Info=False;User ID=administrador;Password=MiTemporal#1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+        ConnectionStrings.heroesConnection: ${{ secrets.HeroesDbConnectionString }}
         Cors.0: "https://heroes-actions-web.azurewebsites.net"
     
     - name: 'Run Azure webapp deploy action using publish profile credentials'
