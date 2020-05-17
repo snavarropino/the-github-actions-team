@@ -31,7 +31,7 @@ jobs:
       run: dotnet build heroes/src/back/SuperHeroesApi.sln --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test heroes/src/back/Api.Test/Api.Test.csproj --no-build --verbosity normal
+      run: dotnet test heroes/src/back/Api.Test/Api.Test.csproj --no-restore --verbosity normal
 
     - name: Publish
       run:  dotnet publish heroes/src/back/Api/Api.csproj --no-restore --configuration Release -o dotnetcoreapiapp 
