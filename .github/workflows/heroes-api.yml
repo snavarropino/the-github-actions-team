@@ -59,7 +59,8 @@ jobs:
       with:
         files: "dotnetcoreapiapp/appsettings.json"
       env:
-        ConnectionStrings.heroesConnection: "Server=tcp:heroes-db-server.database.windows.net,1433;Initial Catalog=heroes-db;Persist Security Info=False;User ID=administrador;Password=MiTemporal#1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+        #You should use secrets!
+        ConnectionStrings.heroesConnection: "Server=tcp:heroes-db-server.database.windows.net,1433;Initial Catalog=heroes-db;Persist Security Info=False;User ID=xxxx;Password=xxxx;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
         Cors.0: "https://heroes-actions-web.azurewebsites.net"
     
     - name: 'Run Azure webapp deploy action using publish profile credentials'
