@@ -92,7 +92,7 @@
     "moment": "2.22.2",
     "ng-packagr": "4.4.0",
     "ngx-store": "2.0.0",
-    "node-sass": "4.10.0",
+    "node-sass": "4.13.1",
     "path": "0.12.7",
     "protractor": "5.4.1",
     "standard-version": "4.4.0",
