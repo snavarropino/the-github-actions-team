@@ -90,7 +90,7 @@
     "karma-remap-istanbul": "0.6.0",
     "karma-scss-preprocessor": "3.0.0",
     "moment": "2.22.2",
-    "ng-packagr": "4.4.0",
+    "ng-packagr": "10.1.1",
     "ngx-store": "2.0.0",
     "node-sass": "4.10.0",
     "path": "0.12.7",
