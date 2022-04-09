@@ -89,7 +89,7 @@
     "karma-junit-reporter": "^1.2.0",
     "karma-remap-istanbul": "0.6.0",
     "karma-scss-preprocessor": "3.0.0",
-    "moment": "2.22.2",
+    "moment": "2.29.2",
     "ng-packagr": "4.4.0",
     "ngx-store": "2.0.0",
     "node-sass": "4.10.0",
