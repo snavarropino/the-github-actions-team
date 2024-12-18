@@ -95,7 +95,7 @@
     "node-sass": "4.10.0",
     "path": "0.12.7",
     "protractor": "5.4.1",
-    "standard-version": "4.4.0",
+    "standard-version": "8.0.1",
     "ts-helpers": "1.1.2",
     "ts-node": "7.0.1",
     "tsickle": "0.33.1",
